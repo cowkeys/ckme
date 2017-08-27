@@ -35,6 +35,7 @@ function send(){
         content,
     }
     addMsg(msg);
+    $("#cnt").val("");
 }
 
 $(function() {
