@@ -5,7 +5,8 @@ function addMsg(msg){
         data:msg,
         success:function(result){
             //console.log("==post===",result);
-            getMsg();
+            //getMsg();
+            append(result);
         }});
 }
 
@@ -22,8 +23,13 @@ function getMsg(){
 
 function showMsg(result){
     for (var i = 0; i<result.length;i++){
-        $("#chatbox li").first().before("<li><p>"+result[i].time+"<p>"+result[i].content+"</li>");
+        //$("#chatbox li").first().before("<li><p>"+result[i].time+"<p>"+result[i].content+"</li>");
+        append(result[i]);
     }
+}
+
+function append(msg){
+    $("#chatbox li").first().before("<li><p>"+msg.time+"<p>"+msg.content+"</li>");
 }
 
 function send(){
