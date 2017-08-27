@@ -13,6 +13,7 @@ router.post('/save', function(req, res, next) {
     }
     msg.time = moment().format("YYYY-MM-DD hh:mm:ss");
     chat.push(msg);
+    console.log("save-record,",msg);
     res.send('success!');
 });
 
