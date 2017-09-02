@@ -135,14 +135,14 @@ router.get('/syncrecord', function(req, res, next) {
             time: "2017-09-02 00:29:39"
         }
     ];
-    for (var i=0;i<history.length;i++){
-        savelist('mdnlist',history[i]).then(function(data){
-            //    console.log("save-record,",JSON.stringify(msg));
-            //    res.send(msg);
-        }).catch(function(err){
-            //    res.send(err);
-        });
-    }
+    // for (var i=0;i<history.length;i++){
+    //     savelist('mdnlist',history[i]).then(function(data){
+    //         //    console.log("save-record,",JSON.stringify(msg));
+    //         //    res.send(msg);
+    //     }).catch(function(err){
+    //         //    res.send(err);
+    //     });
+    // }
 
     res.send({});
 });
