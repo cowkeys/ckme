@@ -4,7 +4,10 @@ var moment = require('moment');
 var {savelist,getlistrange} = require('../lib/cache');
 
 /* GET users listing. */
-
+router.get('/voice', function(req, res, next) {
+console.log("===================");
+	res.send("nini, i have been thinking you for a long time , i love you");
+});
 
 router.post('/save', function(req, res, next) {
     if (!req.body){
