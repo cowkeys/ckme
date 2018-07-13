@@ -27,6 +27,28 @@ router.post('/save', function(req, res, next) {
     });
 });
 
+function dingding(content) {
+var url="https://oapi.dingtalk.com/robot/send?access_token=1cdb63721498b13b64ca13991937e55a6cae03d41befb7467c5861b1dbe37e0c";
+    var requestData={
+     "msgtype": "text",
+     "text": {
+         "content": content
+     }};
+request({
+    url: url,
+    method: "POST",
+    json: true,
+    headers: {
+        "content-type": "application/json",
+    },
+    body: requestData
+}, function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body) // 请求成功的处理逻辑
+    }
+});
+}
+
 router.post('/savesecret', function(req, res, next) {
     if (!req.body){
         return res.send("failed!");
@@ -45,26 +67,8 @@ router.post('/savesecret', function(req, res, next) {
         console.log("save-err",err);
         res.send(err);
     });
+    dingding(msg.content);
 
-    var url="https://oapi.dingtalk.com/robot/send?access_token=1cdb63721498b13b64ca13991937e55a6cae03d41befb7467c5861b1dbe37e0c";
-    var requestData={
-     "msgtype": "text",
-     "text": {
-         "content": msg.content
-     }};
-request({
-    url: url,
-    method: "POST",
-    json: true,
-    headers: {
-        "content-type": "application/json",
-    },
-    body: requestData
-}, function(error, response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(body) // 请求成功的处理逻辑
-    }
-});
 });
 
 
