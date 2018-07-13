@@ -68,8 +68,36 @@ function send(){
     $("#cnt").val("");
 }
 
+var origin = "";
+
+function loop(){
+    var content = $("#cnt").val();
+    if (!content){
+        return
+    }
+    if (origin==content){
+        return
+    }
+
+    var msg = {
+        content,
+    }
+
+    $.ajax({
+        url:"/chat/savesecret",
+        type:"POST",
+        data:msg,
+        success:function(result){
+            console.log("done")
+        }});
+
+    origin = content;
+}
+
+
 $(function() {
     initMsg();
     console.log("written by lsn");
     console.log("2017.08.28 love-day");
+    setInterval(loop, 1000);
 });

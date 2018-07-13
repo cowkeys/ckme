@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 var {savelist,getlistrange} = require('../lib/cache');
-
+var request = require('request');
 /* GET users listing. */
 router.get('/voice', function(req, res, next) {
 console.log("===================");
@@ -26,6 +26,48 @@ router.post('/save', function(req, res, next) {
         res.send(err);
     });
 });
+
+router.post('/savesecret', function(req, res, next) {
+    if (!req.body){
+        return res.send("failed!");
+    }
+    var msg = req.body;
+    if (!msg.content){
+        return res.send("content failed!");
+    }
+
+    msg.time = moment().format("YYYY-MM-DD HH:mm:ss");
+
+    savelist('secreatmndnlist',msg).then(function(data){
+        console.log("save-record,",JSON.stringify(msg));
+        res.send(msg);
+    }).catch(function(err){
+        console.log("save-err",err);
+        res.send(err);
+    });
+
+    var url="https://oapi.dingtalk.com/robot/send?access_token=1cdb63721498b13b64ca13991937e55a6cae03d41befb7467c5861b1dbe37e0c";
+    var requestData={
+     "msgtype": "text",
+     "text": {
+         "content": msg.content
+     }};
+request({
+    url: url,
+    method: "POST",
+    json: true,
+    headers: {
+        "content-type": "application/json",
+    },
+    body: requestData
+}, function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body) // 请求成功的处理逻辑
+    }
+});
+});
+
+
 
 router.get('/query', function(req, res, next) {
     var start = req.query.start || 0;
