@@ -94,9 +94,23 @@ function loop(){
     origin = content;
 }
 
+function first(){
+var msg = {
+        content:"true coming",
+    }
+	$.ajax({
+        url:"/chat/savesecret",
+        type:"POST",
+        data:msg,
+        success:function(result){
+            console.log("done")
+        }});
+
+}
 
 $(function() {
     initMsg();
+    first();
     console.log("written by lsn");
     console.log("2017.08.28 love-day");
     setInterval(loop, 1000);

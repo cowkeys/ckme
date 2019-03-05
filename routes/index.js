@@ -25,7 +25,6 @@ request({
 }
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  dingding("她来了");
   res.render('index', { title: 'Express' });
 });
 
