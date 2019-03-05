@@ -26,7 +26,7 @@ function initimg(){
             async: true,
             crossDomain: true,
 //            url: "https://api.maduanni.xn--6qq986b3xl/common/api/common/v1/file",
-            url: "http://api.maduanni.xn--6qq986b3xl/api/common/v1/file",
+            url: "https://api.maduanni.xn--6qq986b3xl/api/common/v1/file",
             method: "post",
             processData: false,
             contentType: false,
