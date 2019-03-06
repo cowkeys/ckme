@@ -137,18 +137,18 @@ function getLabel(msg){
 
 function initappend(msg){
     if (msg.img){
-        $("#chatbox li").first().before("<li><p>"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
+        $("#chatbox li").first().before("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
     }else{
-        $("#chatbox li").first().before("<li><p>"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre></li>");
+        $("#chatbox li").first().before("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre></li>");
     }
     
 }
 
 function nextappend(msg){
     if (msg.img){
-        $("#chatbox li").last().after("<li><p>"+msg.time+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
+        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
     }else{
-        $("#chatbox li").last().after("<li><p>"+msg.time+"</p><pre>"+msg.content+"</pre></li>");
+        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+"</p><pre>"+msg.content+"</pre></li>");
     }
     
 }
