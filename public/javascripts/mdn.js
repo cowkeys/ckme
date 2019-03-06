@@ -75,7 +75,6 @@ function initb(){
         $(this).css("font-size","20px");
         $(this).siblings("label").css("font-size","12px");
         tag = $(this).text();
-        console.log(tag);
     })
 
 
