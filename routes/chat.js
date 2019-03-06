@@ -19,7 +19,7 @@ router.post('/save', function(req, res, next) {
     }
     msg.time = moment().format("YYYY-MM-DD HH:mm:ss");
 
-    savelist('mdnlist',msg).then(function(data){
+    savelist('storylist',msg).then(function(data){
         console.log("save-record,",JSON.stringify(msg));
         res.send(msg);
     }).catch(function(err){
@@ -32,7 +32,7 @@ var url="https://oapi.dingtalk.com/robot/send?access_token=1cdb63721498b13b64ca1
     var requestData={
      "msgtype": "text",
      "text": {
-         "content": content
+         "content": content+"#ck"
      }};
 request({
     url: url,
@@ -60,7 +60,7 @@ router.post('/savesecret', function(req, res, next) {
 
     msg.time = moment().format("YYYY-MM-DD HH:mm:ss");
 
-    savelist('secreatmndnlist',msg).then(function(data){
+    savelist('secreatstorylist',msg).then(function(data){
         console.log("save-record,",JSON.stringify(msg));
         res.send(msg);
     }).catch(function(err){
@@ -76,7 +76,7 @@ router.post('/savesecret', function(req, res, next) {
 router.get('/query', function(req, res, next) {
     var start = req.query.start || 0;
     var stop = req.query.stop || -1
-    getlistrange('mdnlist',start,stop).then(function(object){
+    getlistrange('storylist',start,stop).then(function(object){
         res.send(object);
     }).catch(function(err){
         res.send(err);

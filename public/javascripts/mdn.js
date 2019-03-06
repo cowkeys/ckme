@@ -1,5 +1,7 @@
 var index = 0;
 var offset = 20;
+var show = 0;
+var tag = "story";
 
 function addMsg(msg){
     $.ajax({
@@ -9,6 +11,10 @@ function addMsg(msg){
         success:function(result){
             initappend(result);
         }});
+}
+
+function test(){
+    $("#xx").css("display","block");
 }
 
 function initimg(){
@@ -41,6 +47,56 @@ function initimg(){
     });
 }
 
+function getImageWidth(url,callback){
+    var img = new Image();
+    img.src = url;
+    // 如果图片被缓存，则直接返回缓存数据
+    if(img.complete){
+        callback(img.width, img.height);
+    }else{
+        img.onload = function(){
+            callback(img.width, img.height);
+        }
+    }
+}
+
+function initb(){
+    $("h1").click(function(){
+        console.log("xx")
+        show++;
+        if (show == 10){
+            test();
+        }else{
+
+        }
+    })
+
+    $("#tag label").click(function(){
+        $(this).css("font-size","20px");
+        $(this).siblings("label").css("font-size","12px");
+        tag = $(this).text();
+        console.log(tag);
+    })
+
+
+    $("#chatbox").on("click","img",function(){
+        var _this = this
+        getImageWidth($(_this).attr("src"),function(w,h){
+
+            console.log({width:w,height:h});
+            console.log($(_this).css("width"));
+            console.log(w+"px")
+            if ($(_this).css("width") == "200px"){
+                $(_this).css("width",w+"px");
+            }else{
+                $(_this).css("width","200px");
+            }
+           
+            //$(this).css("width",w+"px")
+        });
+    })
+}
+
 
 function initMsg(){
     $.ajax({
@@ -70,21 +126,29 @@ function getMsg(){
         }});
 }
 
+function getLabel(msg){
+    if (msg.label){
+        return `<label class="`+msg.label+`">`+msg.label+`</label>`
+    }
+    
+    return ""
+}
+
 
 function initappend(msg){
     if (msg.img){
-        $("#chatbox li").first().before("<li><p>"+msg.time+"</p><p>"+msg.content+"</p><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
+        $("#chatbox li").first().before("<li><p>"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
     }else{
-        $("#chatbox li").first().before("<li><p>"+msg.time+"</p><p>"+msg.content+"</p></li>");
+        $("#chatbox li").first().before("<li><p>"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre></li>");
     }
     
 }
 
 function nextappend(msg){
     if (msg.img){
-        $("#chatbox li").last().after("<li><p>"+msg.time+"</p><p>"+msg.content+"</p><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
+        $("#chatbox li").last().after("<li><p>"+msg.time+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
     }else{
-        $("#chatbox li").last().after("<li><p>"+msg.time+"</p><p>"+msg.content+"</p></li>");
+        $("#chatbox li").last().after("<li><p>"+msg.time+"</p><pre>"+msg.content+"</pre></li>");
     }
     
 }
@@ -92,8 +156,8 @@ function nextappend(msg){
 
 function dontaddlink(){
     $('#more').css("display","none");
-    $("#chatbox li").last().after("<li><p>2017-08-28 00:00:00<p>七夕快乐。bb</li>");
-    $("#chatbox li").last().after(" <p>no more love msg</a>");
+    // $("#chatbox li").last().after("<li><p>2017-08-28 00:00:00<p>七夕快乐。bb</li>");
+    $("#chatbox li").last().after(" <p>no more msg</a>");
 }
 
 
@@ -104,7 +168,8 @@ function send(){
     }
     var msg = {
         content,
-        img:$('#preview').attr('src')
+        img:$('#preview').attr('src'),
+        label:tag
     }
     addMsg(msg);
     $("#cnt").val("");
@@ -138,7 +203,7 @@ function loop(){
 
 function first(){
 var msg = {
-        content:"true coming",
+        content:"true comming.",
     }
 	$.ajax({
         url:"/chat/savesecret",
@@ -152,10 +217,11 @@ var msg = {
 
 $(function() {
     initMsg();
+    initb();
     first();
     console.log("written by lsn");
-    console.log("2017.08.28 love-day");
-    setInterval(loop, 1000);
+    console.log("cowkeys");
+    //setInterval(loop, 1000);
 
     initimg();
 });
