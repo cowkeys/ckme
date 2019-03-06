@@ -81,11 +81,16 @@ function initb(){
 
     $("#chatbox").on("click","img",function(){
         var _this = this
+//        if ($(window).width()>)
         getImageWidth($(_this).attr("src"),function(w,h){
 
             // console.log({width:w,height:h});
             // console.log($(_this).css("width"));
             // console.log(w+"px")
+            //console.log($(window).width())
+            if ($(window).width() < 450){
+                w = 250;
+            }
             if ($(_this).css("width") == "200px"){
                 $(_this).css("width",w+"px");
             }else{
@@ -214,8 +219,16 @@ var msg = {
         }});
 
 }
+function initwindow(){
+    console.log("..",$(window).width());
+    if ($(window).width()<450){
+        console.log("chagge")
+        $("#chatbox").css("padding-left","15px");
+    }
+}
 
 $(function() {
+    initwindow();
     initMsg();
     initb();
     first();

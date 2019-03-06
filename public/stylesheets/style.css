@@ -69,7 +69,9 @@ pre {
   word-break:break-all;
   overflow:hidden;
 }
-
+#chatbox{
+  /* padding-left: 10px; */
+}
 .msgimg{
   width: 200px;
   cursor: pointer;
