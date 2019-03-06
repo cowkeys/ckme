@@ -151,9 +151,9 @@ function initappend(msg){
 
 function nextappend(msg){
     if (msg.img){
-        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
+        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
     }else{
-        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+"</p><pre>"+msg.content+"</pre></li>");
+        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre></li>");
     }
     
 }
@@ -174,7 +174,7 @@ function send(){
     var msg = {
         content,
         img:$('#preview').attr('src'),
-        label:tag
+        ls
     }
     addMsg(msg);
     $("#cnt").val("");
