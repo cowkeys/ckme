@@ -83,9 +83,9 @@ function initb(){
         var _this = this
         getImageWidth($(_this).attr("src"),function(w,h){
 
-            console.log({width:w,height:h});
-            console.log($(_this).css("width"));
-            console.log(w+"px")
+            // console.log({width:w,height:h});
+            // console.log($(_this).css("width"));
+            // console.log(w+"px")
             if ($(_this).css("width") == "200px"){
                 $(_this).css("width",w+"px");
             }else{
