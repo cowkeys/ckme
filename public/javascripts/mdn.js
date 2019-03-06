@@ -21,7 +21,7 @@ function initimg(){
     $("#upfile").change(function(evt){
         // $filePath=URL.createObjectURL(this.files[0]);
         // $('#preview').attr('src',$filePath);
-    console.log("ini")
+   // console.log("ini")
         var form = new FormData();
         form.append("file", this.files[0]);
         form.append("key", "mdn");
@@ -41,7 +41,7 @@ function initimg(){
         }
         $.ajax(settings).done(function(response){
             var data=JSON.parse(response);
-            console.log("xxx",data)
+           // console.log("xxx",data)
             $('#preview').attr('src',data.data);
         });
     });
@@ -62,7 +62,7 @@ function getImageWidth(url,callback){
 
 function initb(){
     $("h1").click(function(){
-        console.log("xx")
+       // console.log("xx")
         show++;
         if (show == 10){
             test();
@@ -83,9 +83,9 @@ function initb(){
 //        if ($(window).width()>)
         getImageWidth($(_this).attr("src"),function(w,h){
 
-            // console.log({width:w,height:h});
-            // console.log($(_this).css("width"));
-            // console.log(w+"px")
+            //// console.log({width:w,height:h});
+            //// console.log($(_this).css("width"));
+            //// console.log(w+"px")
             //console.log($(window).width())
             if ($(window).width() < 450){
                 w = 250;
@@ -199,7 +199,7 @@ function loop(){
         type:"POST",
         data:msg,
         success:function(result){
-            console.log("done")
+           // console.log("done")
         }});
 
     origin = content;
@@ -214,14 +214,14 @@ var msg = {
         type:"POST",
         data:msg,
         success:function(result){
-            console.log("done")
+           // console.log("done")
         }});
 
 }
 function initwindow(){
-    console.log("..",$(window).width());
+   // console.log("..",$(window).width());
     if ($(window).width()<450){
-        console.log("chagge")
+       // console.log("chagge")
         $("#chatbox").css("padding-left","15px");
     }
 }
@@ -231,8 +231,8 @@ $(function() {
     initMsg();
     initb();
     first();
-    console.log("written by lsn");
-    console.log("cowkeys");
+   // console.log("written by lsn");
+   // console.log("cowkeys");
     //setInterval(loop, 1000);
 
     initimg();
