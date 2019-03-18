@@ -91,6 +91,9 @@ function initb(){
             if ($(window).width() < 450){
                 w = 250;
             }
+            if (w >= 1000){
+                w = 1000;
+            }
             if ($(_this).css("width") == "200px"){
                 $(_this).css("width",w+"px");
             }else{
