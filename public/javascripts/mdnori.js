@@ -139,21 +139,32 @@ function getLabel(msg){
     return ""
 }
 
+function filterurl(content){
+    let arr = str.split("http");
+    if (arr.length <= 1 || arr.length > 2){
+        return content
+    }
+    let newcontent = "";
+    //if (arr.length == 2) {
+        newcontent += arr[0] + "<a href=\"http"+ arr[1] +"\">link</a>";
+    //}
+    return newcontent
+}
 
 function initappend(msg){
     if (msg.img){
-        $("#chatbox li").first().before("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
+        $("#chatbox li").first().before("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+filterurl(msg.content)+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
     }else{
-        $("#chatbox li").first().before("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre></li>");
+        $("#chatbox li").first().before("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+filterurl(msg.content)+"</pre></li>");
     }
     
 }
 
 function nextappend(msg){
     if (msg.img){
-        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
+        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+filterurl(msg.content)+"</pre><img class=\"msgimg\" src=\""+msg.img+"\"/></li>");
     }else{
-        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+msg.content+"</pre></li>");
+        $("#chatbox li").last().after("<li><p class=\"timep\">"+msg.time+getLabel(msg)+"</p><pre>"+filterurl(msg.content)+"</pre></li>");
     }
     
 }
